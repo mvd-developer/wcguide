@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+
+    <data>
+
+         <variable
+            name="viewModel"
+            type="com.doschechko.matylionak.wcguide.toolbar.ToolBarFragmentActivityViewModel" />
+    </data>
+
+    <RelativeLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/relativeLayout"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="@color/specialBlueColor"
+            android:elevation="10dp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:layout_gravity="right"
+                android:layout_marginEnd="12dp"
+                android:layout_marginRight="12dp"
+                android:src="@drawable/logo" />
+
+            <com.doschechko.matylionak.wcguide.graf.BackArrow
+                android:id="@+id/back_arrow"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:onClick="@{()->viewModel.onClickBack()}" />
+
+        </RelativeLayout>
+
+        <!--Fragment placeholder-->
+
+        <FrameLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/relativeLayout"
+            android:background="@color/specialWhite">
+
+        </FrameLayout>
+
+
+        <!-- MENU-->
+
+        <SlidingDrawer
+            android:id="@+id/SlidingDrawer"
+            android:layout_width="300dp"
+            android:layout_height="250dp"
+            android:layout_below="@+id/relativeLayout"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal"
+            android:content="@+id/contentLayout"
+            android:handle="@+id/slideButton"
+            android:orientation="vertical"
+            android:padding="10dp"
+            android:rotation="180">
+
+            <!--Handle Button-->
+            <com.doschechko.matylionak.wcguide.graf.MenuButton
+                android:id="@+id/slideButton"
+                android:layout_width="200dp"
+                android:layout_height="40dp"
+                android:elevation="8dp"
+                android:rotation="-180" />
+
+            <!-- Content Layout -->
+            <TableLayout
+                android:id="@+id/contentLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/menu_item"
+                android:elevation="8dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="10dp"
+                android:rotation="180">
+
+                <TableRow android:layout_weight="1">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="5dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/menu_item"
+                        android:onClick="@{()->viewModel.onClickOpenHoroscope()}"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="0dp"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_weight="3"
+                            android:src="@drawable/zodiak" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="@string/horoscope"
+                            android:textColor="@color/specialTextColor"
+                            android:layout_gravity="center|top"/>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="5dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/menu_item"
+                        android:onClick="@{()->viewModel.onClickOpenQuote()}"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="0dp"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_weight="3"
+                            android:src="@drawable/brain" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="@string/citaty"
+                            android:textColor="@color/specialTextColor"
+                            android:layout_gravity="center|top"/>
+                    </LinearLayout>
+                </TableRow>
+
+                <TableRow android:layout_weight="1">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="5dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/menu_item"
+                        android:onClick="@{()->viewModel.onClickOpenAnekdot()}"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="0dp"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_weight="3"
+                            android:src="@drawable/smile" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="@string/anekdoty"
+                            android:textColor="@color/specialTextColor"
+                            android:layout_gravity="center|top"/>
+
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="5dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/menu_item"
+                        android:onClick="@{()->viewModel.onClickOpenAbout()}"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="0dp"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_weight="3"
+                            android:src="@drawable/people" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="@string/feedback"
+                            android:textColor="@color/specialTextColor"
+                            android:layout_gravity="center|top"/>
+
+
+                    </LinearLayout>
+
+                </TableRow>
+            </TableLayout>
+        </SlidingDrawer>
+
+
+    </RelativeLayout>
+</layout>

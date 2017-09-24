@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.doschechko.matylionak.wcguide.citaty.Item_AuthorViewModel"/>
+    </data>
+
+<LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="210dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/menu_item"
+        android:elevation="5dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:onClick="@{()->viewModel.showQuotesByAuthor(viewModel)}">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="3"
+            android:padding="5dp"
+            android:src="@{viewModel.url}" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_margin="3dp"
+            android:text="@{viewModel.name}"
+            android:textColor="@color/specialTextColor" />
+
+    </LinearLayout>
+
+
+
+
+
+</layout>

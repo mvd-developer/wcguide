@@ -1,0 +1,78 @@
+buildscript {
+    repositories {
+        maven { url 'https://maven.fabric.io/public' }
+    }
+
+    dependencies {
+        classpath 'io.fabric.tools:gradle:1.+'
+    }
+}
+apply plugin: 'com.android.application'
+apply plugin: 'io.fabric'
+repositories {
+    maven { url 'https://maven.fabric.io/public' }
+}
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.2"
+    defaultConfig {
+        applicationId "com.doschechko.matylionak.wcguide"
+        minSdkVersion 16
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    dataBinding {
+
+        enabled = true
+
+    }
+
+
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+//гугл карты
+    
+
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    //библиотека для загрузки картинок и файлов
+//    compile 'com.squareup.picasso:picasso:2.5.2'
+//библиотека для слежение за утечкой памяти
+//    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5.1'
+//    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.1'
+//    testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.1'
+
+
+    //новые библиотеки
+    //новые библы
+    compile project( path:":domain")
+    //rxjava
+    //Glide для загрузки картинок
+    compile('com.crashlytics.sdk.android:crashlytics:2.6.8@aar') {
+        transitive = true;
+    }
+    compile 'com.google.android.gms:play-services-maps:10.2.6'
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile 'org.jetbrains:annotations-java5:15.0'
+    compile 'com.android.support:design:25.3.1'
+    compile 'com.android.support:support-v4:25.3.1'
+    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    compile 'io.reactivex.rxjava2:rxjava:2.1.2'
+    compile 'com.github.bumptech.glide:glide:4.0.0'
+    testCompile 'junit:junit:4.12'
+    annotationProcessor 'com.android.databinding:compiler:2.3.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.0.0'
+}

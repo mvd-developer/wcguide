@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="com.doschechko.matylionak.wcguide.STATE" />
+        <import type="android.view.View" />
+        <import type="android.support.v4.content.ContextCompat" />
+
+        <variable
+            name="viewModel"
+            type="com.doschechko.matylionak.wcguide.horoscope.Item_HoroscopeViewModel" />
+    </data>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="170dp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="20dp"
+                    android:scaleType="centerCrop"
+                    android:src="@{viewModel.imageRes}" />
+                <FrameLayout
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginEnd="25dp"
+                    android:layout_marginRight="25dp"
+                    android:background="@drawable/circle_shape"
+                    android:elevation="10dp">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="8dp"
+                        android:src="@{ContextCompat.getDrawable(context,viewModel.img)}" />
+                </FrameLayout>
+
+
+            </RelativeLayout>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/specialWhite"
+                android:gravity="center"
+                android:text="@{viewModel.name}"
+                android:textColor="@color/specialTextColor"
+                android:textSize="30sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/specialWhite"
+                android:gravity="center"
+                android:text="@{viewModel.date}"
+                android:textColor="@color/lightGrey"
+
+                android:textSize="16sp" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/specialWhite"
+                android:paddingBottom="50dp"
+                android:paddingLeft="50dp"
+                android:paddingRight="50dp"
+                android:paddingTop="25dp"
+                android:text="@{viewModel.text}"
+                android:visibility="@{viewModel.state==STATE.PROGRESS? View.GONE : View.VISIBLE}"/>
+
+
+            <ProgressBar
+                style="?android:attr/progressBarStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:visibility="@{viewModel.state==STATE.PROGRESS? View.VISIBLE : View.GONE}" />
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</layout>

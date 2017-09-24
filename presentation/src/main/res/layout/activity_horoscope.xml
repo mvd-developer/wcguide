@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.doschechko.matylionak.wcguide.horoscope.Activity_HoroscopeViewModel" />
+        <variable
+            name="buttonHandler"
+            type="com.doschechko.matylionak.wcguide.horoscope.Activity_HoroscopeViewModel.ClickHandler"/>
+    </data>
+
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:paddingTop="50dp"
+        android:orientation="vertical"
+        android:background="@drawable/bg">
+
+
+        <TableRow android:layout_weight="1">
+
+            <LinearLayout
+                android:id="@+id/znak_00"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/menu_item"
+                android:elevation="5dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:onClick="@{buttonHandler::onClickButton}"
+                >
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="3"
+                    android:padding="5dp"
+                    android:src="@drawable/img_1" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/aries"
+                    android:textColor="@color/specialTextColor" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/znak_01"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/menu_item"
+                android:elevation="5dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:onClick="@{buttonHandler::onClickButton}"
+                >
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="3"
+                    android:padding="5dp"
+                    android:src="@drawable/img_2" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/taurus"
+                    android:textColor="@color/specialTextColor" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/znak_02"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/menu_item"
+                android:elevation="5dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:onClick="@{buttonHandler::onClickButton}">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="3"
+                    android:padding="5dp"
+                    android:src="@drawable/img_3" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/gemini"
+                    android:textColor="@color/specialTextColor" />
+
+            </LinearLayout>
+
+
+        </TableRow>
+
+        <TableRow android:layout_weight="1">
+
+            <LinearLayout
+                android:id="@+id/znak_03"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/menu_item"
+                android:elevation="5dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:onClick="@{buttonHandler::onClickButton}">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="3"
+                    android:padding="5dp"
+                    android:src="@drawable/img_4" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/cancer"
+                    android:textColor="@color/specialTextColor" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/znak_04"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/menu_item"
+                android:elevation="5dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:onClick="@{buttonHandler::onClickButton}">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="3"
+                    android:padding="5dp"
+                    android:src="@drawable/img_5" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/leo"
+                    android:textColor="@color/specialTextColor" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/znak_05"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/menu_item"
+                android:elevation="5dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:onClick="@{buttonHandler::onClickButton}">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="3"
+                    android:padding="5dp"
+                    android:src="@drawable/img_6" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/virgo"
+                    android:textColor="@color/specialTextColor" />
+
+            </LinearLayout>
+
+
+        </TableRow>
+
+        <TableRow android:layout_weight="1">
+
+            <LinearLayout
+                android:id="@+id/znak_06"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/menu_item"
+                android:elevation="5dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:onClick="@{buttonHandler::onClickButton}">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="3"
+                    android:padding="5dp"
+                    android:src="@drawable/img_7" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/libra"
+                    android:textColor="@color/specialTextColor" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/znak_07"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/menu_item"
+                android:elevation="5dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:onClick="@{buttonHandler::onClickButton}">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="3"
+                    android:padding="5dp"
+                    android:src="@drawable/img_8" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/scorpio"
+                    android:textColor="@color/specialTextColor" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/znak_08"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/menu_item"
+                android:elevation="5dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:onClick="@{buttonHandler::onClickButton}">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="3"
+                    android:padding="5dp"
+                    android:src="@drawable/img_9" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/sagittarius"
+                    android:textColor="@color/specialTextColor" />
+
+            </LinearLayout>
+
+
+        </TableRow>
+
+        <TableRow android:layout_weight="1">
+
+            <LinearLayout
+                android:id="@+id/znak_09"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/menu_item"
+                android:elevation="5dp"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:onClick="@{buttonHandler::onClickButton}">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="3"
+                    android:padding="5dp"
+                    android:src="@drawable/img_10" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/carpicorn"
+                    android:textColor="@color/specialTextColor" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/znak_10"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/menu_item"
+                android:elevation="5dp"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:onClick="@{buttonHandler::onClickButton}">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="3"
+                    android:padding="5dp"
+                    android:src="@drawable/img_11" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/aquarius"
+                    android:textColor="@color/specialTextColor" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/znak_11"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/menu_item"
+                android:elevation="5dp"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:onClick="@{buttonHandler::onClickButton}"
+                >
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="3"
+                    android:padding="5dp"
+                    android:src="@drawable/img_12" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/pisces"
+                    android:textColor="@color/specialTextColor" />
+
+            </LinearLayout>
+
+
+        </TableRow>
+
+    </TableLayout>
+
+</layout>

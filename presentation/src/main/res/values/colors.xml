@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3dabae</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+   <!--Фирменные цвета-->
+    <color name="specialBlueColor">#52d3d6</color>
+    <color name="specialBlueColor_light">#7fe0e2</color>
+    <color name="specialTextColor">#3f3b3a</color>
+    <color name="specialWhite">#fcfaf9</color>
+    <color name="lightGrey">#e1e1e1</color>
+    <color name="spesialBlack">#000001</color>
+</resources>

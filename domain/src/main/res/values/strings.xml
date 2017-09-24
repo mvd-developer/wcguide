@@ -1,0 +1,53 @@
+<resources>
+    <string name="app_name">domain</string>
+
+    <string-array
+        name="domain_names">
+    <item>Овен</item>
+    <item>Телец</item>
+    <item>Близнецы</item>
+    <item>Рак</item>
+    <item>Лев</item>
+    <item>Дева</item>
+    <item>Весы</item>
+    <item>Скорпион</item>
+    <item>Стрелец</item>
+    <item>Козерог</item>
+    <item>Водолей</item>
+    <item>Рыбы</item>
+
+</string-array>
+
+    <string-array
+        name="domain_dates">
+    <item>21 марта - 20 апреля</item>
+    <item>21 апреля - 20 мая</item>
+    <item>21 мая - 21 июня</item>
+    <item>22 июня - 22 июля</item>
+    <item>23 июля - 23 августа</item>
+    <item>24 августа - 23 сентября</item>
+    <item>24 сентября - 23 октября</item>
+    <item>24 октября - 22 ноября</item>
+    <item>23 ноября - 21 декабря</item>
+    <item>22 декабря - 20 января</item>
+    <item>21 января - 20 февраля</item>
+    <item>21 февраля - 20 марта</item>
+</string-array>
+
+
+
+    <string-array name="domain_links">
+        <item>https://horo.mail.ru/prediction/aries/today/</item>
+        <item>https://horo.mail.ru/prediction/taurus/today/</item>
+        <item>https://horo.mail.ru/prediction/gemini/today/</item>
+        <item>https://horo.mail.ru/prediction/cancer/today/</item>
+        <item>https://horo.mail.ru/prediction/leo/today/</item>
+        <item>https://horo.mail.ru/prediction/virgo/today/</item>
+        <item>https://horo.mail.ru/prediction/libra/today/</item>
+        <item>https://horo.mail.ru/prediction/scorpio/today/</item>
+        <item>https://horo.mail.ru/prediction/sagittarius/today/</item>
+        <item>https://horo.mail.ru/prediction/capricorn/today/</item>
+        <item>https://horo.mail.ru/prediction/aquarius/today/</item>
+        <item>https://horo.mail.ru/prediction/pisces/today/</item>
+    </string-array>
+</resources>

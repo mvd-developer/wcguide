@@ -1,0 +1,68 @@
+<resources>
+    <string name="app_name">WCguide</string>
+    <string name="findWC">Найти туалет</string>
+    <string name="disclaimer">Устанавливая приложение, Вы соглашаетесь с тем условием,
+        что разработчики данного программного продукта не несут ответственности за
+        возможный причиненный ущерб Вам, Вашему бизнесу, Вашей деловой репутации.
+        Вся информация, использованная в приложении, взята из открытых источников
+        и находится в открытом доступе. Географическое расположение, стоимость и
+        графики работы  туалетов могут меняться. Будьте внимательны при
+        планировании маршрута! </string>
+    <string name="horoscope">Гороскоп</string>
+    <string name="citaty">Цитаты</string>
+    <string name="anekdoty">Анекдоты</string>
+    <string name="feedback">Обратная связь</string>
+    <string name="lorem">
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ac sapien vel metus pharetra lobortis
+        nec nec metus. In sagittis eleifend congue. Curabitur quis condimentum ligula. Mauris aliquet
+        viverra tellus, pharetra sagittis diam aliquet maximus. Phasellus tincidunt nisl at lacus feugiat,
+        eu bibendum mi tristique. Nullam malesuada mi et purus tincidunt mattis. Fusce vestibulum diam in
+        tortor scelerisque, a iaculis lectus tincidunt. Morbi posuere vulputate maximus. In id nulla condimentum,
+        maximus tellus at, varius arcu. Sed lobortis sagittis metus a efficitur.
+</string>
+    <string name="feed_back_text">Приложение "Минский туалетный гид" - создано специально  для минчан и гостей столицы.
+    </string>
+
+
+    <string name="showMore">Показать ещё</string>
+
+
+    <string name="aries">Овен</string>
+    <string name="taurus">Телец</string>
+    <string name="gemini">Близнецы</string>
+    <string name="cancer">Рак</string>
+    <string name="leo">Лев</string>
+    <string name="virgo">Дева</string>
+    <string name="libra">Весы</string>
+    <string name="scorpio">Скорпион</string>
+    <string name="sagittarius">Стрелец</string>
+    <string name="carpicorn">Козерог</string>
+    <string name="aquarius">Водолей</string>
+    <string name="pisces">Рыбы</string>
+
+
+    <string name="aries_date">21 марта - 20 апреля</string>
+    <string name="taurus_date">21 апреля - 20 мая</string>
+    <string name="gemini_date">21 мая - 21 июня</string>
+    <string name="cancer_date">22 июня - 22 июля</string>
+    <string name="leo_date">23 июля - 23 августа</string>
+    <string name="virgo_date">24 августа - 23 сентября</string>
+    <string name="libra_date">24 сентября - 23 октября</string>
+    <string name="scorpio_date">24 октября - 22 ноября</string>
+    <string name="sagittarius_date">23 ноября - 21 декабря</string>
+    <string name="carpicorn_date">22 декабря - 20 января</string>
+    <string name="aquarius_date">21 января - 20 февраля</string>
+    <string name="pisces_date">21 февраля - 20 марта</string>
+
+
+    <string name="noInternetConnection">Невозможно получить данные. Проверьте интернет-соединение и повторите попытку.</string>
+    <string name="mapLoaded">Карта загружена.</string>
+    <string name="adress_pole">Адрес:</string>
+    <string name="worktime_pole">Время работы:</string>
+    <string name="сost_pole">Категория:</string>
+    <string name="loading_data">Идет загрузка данных, ожидайте...</string>
+    <string name="title_activity_maps">Map</string>
+
+
+</resources>

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <import type="android.view.View" />
+        <import type="com.doschechko.matylionak.wcguide.STATE" />
+        <variable
+            name="viewModel"
+            type="com.doschechko.matylionak.wcguide.maps.Activity_Item_WC_ViewModel">
+        </variable>
+    </data>
+
+<android.support.constraint.ConstraintLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/bg"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:id="@+id/item_wc_lay">
+
+    <ProgressBar
+        android:id="@+id/wc_item_progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="115dp"
+        android:layout_height="90dp"
+        android:layout_centerInParent="true"
+        android:visibility="@{viewModel.state==STATE.PROGRESS? View.VISIBLE : View.GONE}"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+
+
+    <ImageView
+
+        android:id="@+id/imageViewItemWC"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        android:intosrc="@{viewModel.url}"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:scaleType="centerCrop"
+        android:background="@drawable/no_photo"
+
+         />
+
+    <TextView
+        android:id="@+id/tvCost_pole"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/сost_pole"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="30dp"
+        android:textStyle="bold"
+        android:textSize="@dimen/item_wc_size"
+        android:layout_marginTop="30dp"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewItemWC" />
+
+    <TextView
+        android:id="@+id/tvWorkTime_pole"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/worktime_pole"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="@+id/tvCost_pole"
+        app:layout_constraintTop_toBottomOf="@+id/tvCost_pole"
+        app:layout_constraintVertical_bias="0.05"
+        android:textStyle="bold"
+        android:textSize="@dimen/item_wc_size"
+
+        />
+
+    <TextView
+        android:id="@+id/tvAddress_pole"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/adress_pole"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="@+id/tvWorkTime_pole"
+        app:layout_constraintTop_toBottomOf="@+id/tvWorkTime_pole"
+        app:layout_constraintVertical_bias="0.05"
+        android:textStyle="bold"
+        android:textSize="@dimen/item_wc_size"
+
+        />
+
+    <TextView
+        android:id="@+id/tvCost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@{viewModel.cost}"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tvCost_pole"
+        android:hint="aaaaddda"
+        android:layout_marginRight="30dp"
+        android:textStyle="bold"
+        app:layout_constraintRight_toRightOf="parent"
+        android:textSize="@dimen/item_wc_size" />
+
+    <TextView
+        android:id="@+id/tvWorkTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@{viewModel.work_time}"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tvWorkTime_pole"
+        android:hint="aaaaa"
+        android:textStyle="bold"
+        app:layout_constraintRight_toRightOf="@+id/tvCost"
+        android:textSize="@dimen/item_wc_size"/>
+
+    <TextView
+        android:id="@+id/tvAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@{viewModel.address}"
+        android:hint="aaaaa"
+        android:textStyle="bold"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tvAddress_pole"
+        app:layout_constraintRight_toRightOf="@+id/tvWorkTime"
+        android:textSize="@dimen/item_wc_size"/>
+
+</android.support.constraint.ConstraintLayout>
+
+</layout>
+
