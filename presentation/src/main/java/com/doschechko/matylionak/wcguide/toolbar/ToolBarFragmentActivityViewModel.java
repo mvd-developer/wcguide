@@ -45,7 +45,9 @@ public class ToolBarFragmentActivityViewModel implements BaseFragmentActivityVie
 
     @Override
     public void init() {
-       // showFragment(fragmentManager,  new Activity_Maps(), false);
+       //тут был  true (нюанс был только в белом экране когда true, при false - при сворачивании не создавало активити)
+       // showFragment(fragmentManager,   Activity_Maps.newInstance(fragmentManager,"Activity_Maps"), false);
+
     }
 
     @Override
@@ -55,7 +57,8 @@ public class ToolBarFragmentActivityViewModel implements BaseFragmentActivityVie
 
     @Override
     public void resume() {
-//        showFragment(fragmentManager,  new Activity_Maps().newInstance(fragmentManager,"Activity_Maps"), true);
+        showFragment(fragmentManager,   new Activity_Maps(), false);
+       // showFragment(fragmentManager,   Activity_Maps.newInstance(fragmentManager,"Activity_Maps"), true);
 
     }
 

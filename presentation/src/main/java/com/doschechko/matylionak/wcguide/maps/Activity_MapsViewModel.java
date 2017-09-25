@@ -138,6 +138,8 @@ public class Activity_MapsViewModel implements BaseFragmentViewModel, OnMapReady
     @Override
     public void resume() {
         Log.e("final ", " resume  ");
+
+
     }
 
     @Override

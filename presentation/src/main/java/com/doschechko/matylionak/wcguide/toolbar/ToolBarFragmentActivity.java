@@ -34,7 +34,7 @@ public class ToolBarFragmentActivity extends BaseFragmentActivity {
                 .setContentView(this, R.layout.toolbar);
         binding.setViewModel(viewModel);
 
-        SlidingDrawer drawer=binding.SlidingDrawer;
+        SlidingDrawer drawer = binding.SlidingDrawer;
         viewModel.setSlidingDrawer(drawer);
 
 
@@ -42,19 +42,19 @@ public class ToolBarFragmentActivity extends BaseFragmentActivity {
 //        if (savedInstanceState == null) {
 //        //проверка на наличие экрана
 //            ToolBarFragmentActivityViewModel.showFragment(getSupportFragmentManager(),
-//                    new Activity_Maps().newInstance(getSupportFragmentManager(), "Activity_Maps"), true);
-//            Toast.makeText(getBaseContext(),"Добро пожаловать!", Toast.LENGTH_SHORT).show();
+//                    Activity_Maps.newInstance(getSupportFragmentManager(), "Activity_Maps"), true);
+//          //  Toast.makeText(getBaseContext(),"Добро пожаловать!", Toast.LENGTH_SHORT).show();
 //        }
 
         super.onCreate(savedInstanceState);
-
 
     }
 
 
     @Override
     protected void onStart() {
-        showFragment(getSupportFragmentManager(), Activity_Maps.newInstance(getSupportFragmentManager(),"Activity_Maps"), true);
+//        showFragment(getSupportFragmentManager(),
+//                Activity_Maps.newInstance(getSupportFragmentManager(), "Activity_Maps"), false);
         super.onStart();
     }
 }

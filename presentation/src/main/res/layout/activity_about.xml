@@ -39,13 +39,13 @@
 
                 />
 
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:layout_marginLeft="50dp"
-                android:layout_marginRight="50dp"
-                android:layout_marginTop="25dp"
-                android:hint="@string/put_your_text"/>
+            <!--<EditText-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="100dp"-->
+                <!--android:layout_marginLeft="50dp"-->
+                <!--android:layout_marginRight="50dp"-->
+                <!--android:layout_marginTop="25dp"-->
+                <!--android:hint="@string/put_your_text"/>-->
 
             <Button
                 android:id="@+id/shareButton"
