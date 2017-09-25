@@ -12,6 +12,8 @@ import com.doschechko.matylionak.wcguide.base.BaseFragmentActivity;
 import com.doschechko.matylionak.wcguide.databinding.ToolbarBinding;
 import com.doschechko.matylionak.wcguide.maps.Activity_Maps;
 
+import static com.doschechko.matylionak.wcguide.toolbar.ToolBarFragmentActivityViewModel.showFragment;
+
 /**
  * ToolBar with changeble fragments
  */
@@ -36,17 +38,23 @@ public class ToolBarFragmentActivity extends BaseFragmentActivity {
         viewModel.setSlidingDrawer(drawer);
 
 
-       // для загрузки карты
-       // if (savedInstanceState == null) {
-//проверка на наличие экрана
+//        //    для загрузки карты
+//        if (savedInstanceState == null) {
+//        //проверка на наличие экрана
 //            ToolBarFragmentActivityViewModel.showFragment(getSupportFragmentManager(),
-//                    new Activity_Maps(), true);
+//                    new Activity_Maps().newInstance(getSupportFragmentManager(), "Activity_Maps"), true);
 //            Toast.makeText(getBaseContext(),"Добро пожаловать!", Toast.LENGTH_SHORT).show();
-          // showFragment(getSupportFragmentManager(), new ClassWork13Fragment(), false);
-     //   }
+//        }
 
         super.onCreate(savedInstanceState);
 
 
+    }
+
+
+    @Override
+    protected void onStart() {
+        showFragment(getSupportFragmentManager(), Activity_Maps.newInstance(getSupportFragmentManager(),"Activity_Maps"), true);
+        super.onStart();
     }
 }

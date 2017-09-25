@@ -2,6 +2,7 @@ package com.doschechko.matylionak.wcguide.citaty;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.support.v4.app.ShareCompat;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -43,19 +44,35 @@ public class MyAdaptor extends RecyclerView.Adapter<MyHolder> {
         holder.setItemClickListener(new ItemClickListener() {
             @Override
             public void OnClick(View view, int position) {
-                Log.e("FUCK", "setItemClickListener");
-                Intent shareIntent = new Intent();
-                shareIntent.setAction(Intent.ACTION_SEND);
-                shareIntent.putExtra(Intent.EXTRA_TEXT, "Отправлено из приложения \"Минский туалетный гид\":"
-                        +"\n"
-                        + list.get(position).getBody()
-                        + "\n"
-                        +list.get(position).getAuthor()
-                        +"\n"
-                        +"===> Все общественные туалеты на карте Минска! Качай! www.google.by");
-                shareIntent.setType("text/plain");
-                activity.startActivity(shareIntent);
                 Toast.makeText(activity, "Поделиться...", Toast.LENGTH_SHORT).show();
+                Log.e("FUCK", "setItemClickListener");
+//                Intent shareIntent = new Intent();
+//                shareIntent.setAction(Intent.ACTION_SEND);
+//                shareIntent.putExtra(Intent.EXTRA_TEXT, "Отправлено из приложения \"Минский туалетный гид\":"
+//                        + "\n"
+//                        + list.get(position).getBody()
+//                        + "\n"
+//                        + list.get(position).getAuthor()
+//                        + "\n"
+//                        + "===> Все общественные туалеты на карте Минска! Качай в GooglePlay!");
+//                shareIntent.setType("text/plain");
+//                activity.startActivity(shareIntent);
+
+                Intent shareIntent = ShareCompat.IntentBuilder.from(activity)
+                        .setType("text/plain")
+                        .setText("Отправлено из приложения \"Минский туалетный гид\":"
+                                + "\n"
+                                + list.get(position).getBody()
+                                + "\n"
+                                + list.get(position).getAuthor()
+                                + "\n"
+                                + "===> Все общественные туалеты на карте Минска! Качай в GooglePlay!")
+                        .getIntent();
+                if (shareIntent.resolveActivity(activity.getPackageManager()) != null) {
+                    activity.startActivity(shareIntent);
+                }
+
+
             }
         });
     }

@@ -3,7 +3,11 @@ package com.doschechko.matylionak.wcguide.citaty;
 import android.app.Activity;
 import android.content.Intent;
 import android.databinding.ObservableField;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.widget.Toast;
+
 import com.doschechko.matylionak.domain.entity.Quote;
 import com.doschechko.matylionak.domain.interaction.UseCaseGetQuotesByAuthor;
 import com.doschechko.matylionak.wcguide.STATE;
@@ -24,13 +28,14 @@ public class Activity_QuoteViewModel implements BaseFragmentViewModel {
     private ObservableField<STATE> state = new ObservableField<>(STATE.PROGRESS);
     private UseCaseGetQuotesByAuthor useCaseGetQuotesByAuthor = new UseCaseGetQuotesByAuthor(authorName);
     private ObservableField<STATE> stateButton = new ObservableField<>(STATE.DATA);
+    private FragmentManager manager;
 
     @Override
     public void init() {
         pull();
-     }
+    }
 
-     //при нажатии на кнопку - "показать ещё
+    //при нажатии на кнопку - "показать ещё
     public void showMore() {
         pull();
     }
@@ -75,12 +80,21 @@ public class Activity_QuoteViewModel implements BaseFragmentViewModel {
 
     @Override
     public void pause() {
-        useCaseGetQuotesByAuthor.dispose();
+//        FragmentTransaction transaction = manager.beginTransaction();
+//        transaction.add(manager.findFragmentByTag(Activity_Quote.class.getName()), "dvd");
+//        transaction.addToBackStack(null);
+//        transaction.commit();
+
+        Log.e("MY_FINAL", "pause");
+        if (useCaseGetQuotesByAuthor != null) {
+            useCaseGetQuotesByAuthor.dispose();
+        }
     }
 
     @Override
     public void release() {
-
+        Log.e("MY_FINAL", "release");
+        //useCaseGetQuotesByAuthor.dispose();
     }
 
 

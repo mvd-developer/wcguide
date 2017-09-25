@@ -52,7 +52,7 @@ public class Item_AuthorViewModel {
         Log.e("AAAA", viewModel.getName().get());
         Activity_Authors.AUTHOR_NAME = viewModel.getName().get();
         //стартуем новый фрагмент
-        ToolBarFragmentActivityViewModel.showFragment(manager, new Activity_Quote()
+        ToolBarFragmentActivityViewModel.showFragment(manager, Activity_Quote
                 .newInstance(manager,"Activity_Quote"), true);
 
     }

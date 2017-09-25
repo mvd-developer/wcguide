@@ -11,6 +11,7 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
@@ -59,7 +60,7 @@ public class Activity_MapsViewModel implements BaseFragmentViewModel, OnMapReady
     private Activity_Maps activity;
     Activity_MapsViewModel activity_mapsViewModel = this;
     FragmentManager manager;
-    private ArrayList<WcProfileModel> listWc = new ArrayList<>();
+    private ArrayList<WcProfileModel> listWc;
     private UseCaseGetListWC useCaseGetListWC = new UseCaseGetListWC();
     private UseCaseGetImageLinkWC useCaseGetImageLinkWC = new UseCaseGetImageLinkWC();
     private SupportMapFragment mapFragment;
@@ -69,7 +70,7 @@ public class Activity_MapsViewModel implements BaseFragmentViewModel, OnMapReady
     private Location location;
     private GoogleMap googleMap;
     private boolean isFirstStart = true;
-    private  String urlImageGlideurl;
+    private String urlImageGlideurl;
     //  private boolean isContinue=false;
 
 
@@ -91,6 +92,7 @@ public class Activity_MapsViewModel implements BaseFragmentViewModel, OnMapReady
         useCaseGetListWC.execute(null, new DisposableObserver<List<WcProfileModel>>() {
             @Override
             public void onNext(@NonNull List<WcProfileModel> wcProfileModels) {
+                listWc = new ArrayList<>();
                 listWc.addAll(wcProfileModels);
                 Log.e("final ", " onNext 00 " + listWc.size());
                 /////////////////для логов
@@ -153,12 +155,19 @@ public class Activity_MapsViewModel implements BaseFragmentViewModel, OnMapReady
 УДАЛЯЕМ ФРАГМЕНТ с родительского фрагмента - это не баг, а фича Google Maps v2
  :-))))
  */
-        Log.e("finalize ", " pause - manage to delite MAP  ");
-        if(mapFragment!=null){
-            Log.e("finalize ", " remove   manage to delite MAP");
-            manager.beginTransaction().remove(mapFragment).commit();
-        }
+       FragmentManager managerA = activity.getChildFragmentManager();
 
+        Log.e("finalize ", " pause - manage to delite MAP  ");
+        try {
+            if (mapFragment != null) {
+                Log.e("finalize ", " remove   manage to delite MAP");
+              FragmentTransaction transaction = managerA.beginTransaction().remove(mapFragment);
+                transaction.commitNow();
+            }
+        } catch (Exception e) {
+            Log.e("finalize ", " THIS IS EXEPTION");
+
+        }
 
     }
 
@@ -423,7 +432,7 @@ public class Activity_MapsViewModel implements BaseFragmentViewModel, OnMapReady
         String[] arrWorkWcTime;
         String wcStart;
         String wcEnd;
-        if(work_time.equals("Круглосуточно")){
+        if (work_time.equals("Круглосуточно")) {
 
             return true;
         }
@@ -438,7 +447,7 @@ public class Activity_MapsViewModel implements BaseFragmentViewModel, OnMapReady
         }
         //проверка на круглосуточность
         String checkKruglosut = "00:00";
-        if ((wcStart.equals(checkKruglosut) && wcEnd.equals(checkKruglosut))){
+        if ((wcStart.equals(checkKruglosut) && wcEnd.equals(checkKruglosut))) {
             return true;
         }
 
@@ -493,11 +502,11 @@ public class Activity_MapsViewModel implements BaseFragmentViewModel, OnMapReady
         Log.e("final ", " oblect Id on marker " + marker.getTag());
         Bundle bundle = new Bundle();
         bundle.putString("bundle_item_wc", marker.getTag().toString());
-        Activity_Item_WC activity_item_wc = new Activity_Item_WC();
+        FragmentManager fragManager = activity.getActivity().getSupportFragmentManager();
+        Activity_Item_WC activity_item_wc = Activity_Item_WC.newInstance(fragManager,"Activity_Item_WC");
         activity_item_wc.setArguments(bundle);
         try {
-            FragmentManager fragManager = activity.getActivity().getSupportFragmentManager();
-            ToolBarFragmentActivityViewModel.showFragment(fragManager, activity_item_wc, true);//а поставлю-ка я тут true
+            ToolBarFragmentActivityViewModel.showFragment(fragManager,activity_item_wc, true);//а поставлю-ка я тут true
         } catch (Exception e) {
 
             Log.e("wcerror ", e.toString());

@@ -27,6 +27,8 @@ private String text;
         this.viewModel = viewModel;
         viewModel.setActivity(getActivity());
 
+
+        FragmentManager manager =getActivity().getSupportFragmentManager();
         ActivityQuoteBinding binding = DataBindingUtil.inflate(
                 inflater, R.layout.activity_quote, container, false);
         View view = binding.getRoot();

@@ -55,7 +55,7 @@ public class ToolBarFragmentActivityViewModel implements BaseFragmentActivityVie
 
     @Override
     public void resume() {
-        showFragment(fragmentManager,  new Activity_Maps().newInstance(fragmentManager,"Activity_Maps"), true);
+//        showFragment(fragmentManager,  new Activity_Maps().newInstance(fragmentManager,"Activity_Maps"), true);
 
     }
 
@@ -67,28 +67,28 @@ public class ToolBarFragmentActivityViewModel implements BaseFragmentActivityVie
 
     public void onClickOpenAbout() {
         //it starts an AboutUsActivity
-        showFragment(fragmentManager, new AboutFragment().newInstance(fragmentManager,"AboutFragment"), true);//false
+        showFragment(fragmentManager, AboutFragment.newInstance(fragmentManager,"AboutFragment"), true);//false
         slidingDrawer.animateClose();
     }
 
 
     public void onClickOpenQuote() {
         //it starts an Activity_Quote
-        showFragment(fragmentManager, new Activity_Authors().newInstance(fragmentManager,"Activity_Authors"), true);
+        showFragment(fragmentManager, Activity_Authors.newInstance(fragmentManager,"Activity_Authors"), true);
         slidingDrawer.animateClose();
     }
 
 
     public void onClickOpenHoroscope() {
         //it starts an Activity_Horoscope
-        showFragment(fragmentManager, new Activity_Horoscope().newInstance(fragmentManager,"Activity_Horoscope"), true);
+        showFragment(fragmentManager, Activity_Horoscope.newInstance(fragmentManager,"Activity_Horoscope"), true);
         slidingDrawer.animateClose();
     }
 
 
     public void onClickOpenAnekdot() {
         //it starts an Activity_Anekdot
-        showFragment(fragmentManager, new Activity_Anekdot().newInstance(fragmentManager,"Activity_Anekdot"), true);
+        showFragment(fragmentManager, Activity_Anekdot.newInstance(fragmentManager,"Activity_Anekdot"), true);
         slidingDrawer.animateClose();
     }
 

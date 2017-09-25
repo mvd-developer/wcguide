@@ -15,9 +15,9 @@ public abstract class BaseFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-       // viewModel.init();
-        return super.onCreateView(inflater, container, savedInstanceState);
 
+        return super.onCreateView(inflater, container, savedInstanceState);
+        // viewModel.init();
     }
 
     @Override
