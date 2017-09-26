@@ -45,8 +45,8 @@ public class ToolBarFragmentActivityViewModel implements BaseFragmentActivityVie
 
     @Override
     public void init() {
+        showFragment(fragmentManager,  new Activity_Maps().newInstance(fragmentManager,"Activity_Maps"), false);
        //тут был  true (нюанс был только в белом экране когда true, при false - при сворачивании не создавало активити)
-       // showFragment(fragmentManager,   Activity_Maps.newInstance(fragmentManager,"Activity_Maps"), false);
 
     }
 
@@ -57,8 +57,6 @@ public class ToolBarFragmentActivityViewModel implements BaseFragmentActivityVie
 
     @Override
     public void resume() {
-        showFragment(fragmentManager,   new Activity_Maps(), false);
-       // showFragment(fragmentManager,   Activity_Maps.newInstance(fragmentManager,"Activity_Maps"), true);
 
     }
 
@@ -104,7 +102,11 @@ public class ToolBarFragmentActivityViewModel implements BaseFragmentActivityVie
 
 
     public static void showFragment(FragmentManager fragmentManager, Fragment fragment, boolean addToBackStack) {
-        //здесь мы все перенесли тупо в статический метод
+        //здесь мы все перенесли в статический метод
+        if(fragment.isAdded())
+        {
+            return;
+        }
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         //последний аргумент нужен только для индефикации - уникальный тег.
         fragmentTransaction.replace(R.id.container, fragment, fragment.getClass().getName());

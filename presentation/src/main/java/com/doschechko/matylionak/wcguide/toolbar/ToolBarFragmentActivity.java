@@ -51,10 +51,5 @@ public class ToolBarFragmentActivity extends BaseFragmentActivity {
     }
 
 
-    @Override
-    protected void onStart() {
-//        showFragment(getSupportFragmentManager(),
-//                Activity_Maps.newInstance(getSupportFragmentManager(), "Activity_Maps"), false);
-        super.onStart();
-    }
+
 }

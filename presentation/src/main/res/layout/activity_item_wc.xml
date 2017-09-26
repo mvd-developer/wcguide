@@ -93,7 +93,6 @@
         android:layout_height="wrap_content"
         android:text="@{viewModel.cost}"
         app:layout_constraintBaseline_toBaselineOf="@+id/tvCost_pole"
-        android:hint="aaaaddda"
         android:layout_marginRight="30dp"
         android:textStyle="bold"
         app:layout_constraintRight_toRightOf="parent"
@@ -105,7 +104,6 @@
         android:layout_height="wrap_content"
         android:text="@{viewModel.work_time}"
         app:layout_constraintBaseline_toBaselineOf="@+id/tvWorkTime_pole"
-        android:hint="aaaaa"
         android:textStyle="bold"
         app:layout_constraintRight_toRightOf="@+id/tvCost"
         android:textSize="@dimen/item_wc_size"/>
@@ -115,7 +113,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@{viewModel.address}"
-        android:hint="aaaaa"
         android:textStyle="bold"
         app:layout_constraintBaseline_toBaselineOf="@+id/tvAddress_pole"
         app:layout_constraintRight_toRightOf="@+id/tvWorkTime"
