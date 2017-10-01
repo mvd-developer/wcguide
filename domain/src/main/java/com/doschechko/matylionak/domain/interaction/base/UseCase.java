@@ -24,7 +24,7 @@ public abstract class UseCase<InParam, OutParam> {
                 .subscribeOn(Schedulers.newThread()) //где выполняется
                 .subscribeWith(disposableObserver);
 
-        //flat, filter, flatMap, subScribeWith - самые необходимые методы
+
     }
 
 

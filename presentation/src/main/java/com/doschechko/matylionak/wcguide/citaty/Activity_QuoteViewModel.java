@@ -80,10 +80,6 @@ public class Activity_QuoteViewModel implements BaseFragmentViewModel {
 
     @Override
     public void pause() {
-//        FragmentTransaction transaction = manager.beginTransaction();
-//        transaction.add(manager.findFragmentByTag(Activity_Quote.class.getName()), "dvd");
-//        transaction.addToBackStack(null);
-//        transaction.commit();
 
         Log.e("MY_FINAL", "pause");
         if (useCaseGetQuotesByAuthor != null) {
@@ -94,7 +90,6 @@ public class Activity_QuoteViewModel implements BaseFragmentViewModel {
     @Override
     public void release() {
         Log.e("MY_FINAL", "release");
-        //useCaseGetQuotesByAuthor.dispose();
     }
 
 

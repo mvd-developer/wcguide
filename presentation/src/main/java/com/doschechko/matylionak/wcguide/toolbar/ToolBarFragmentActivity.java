@@ -1,5 +1,6 @@
 package com.doschechko.matylionak.wcguide.toolbar;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -23,9 +24,12 @@ public class ToolBarFragmentActivity extends BaseFragmentActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        Intent intent =getIntent();
+        Boolean getPermission=intent.getBooleanExtra("getPermission",false);
         //создаем дата-биндинг
         ToolBarFragmentActivityViewModel viewModel = new ToolBarFragmentActivityViewModel();
         viewModel.setActivity(this);
+        viewModel.setPermission(getPermission);
         FragmentManager manager = getSupportFragmentManager();
         viewModel.setFragmentManager(manager);
         this.viewModel = viewModel;

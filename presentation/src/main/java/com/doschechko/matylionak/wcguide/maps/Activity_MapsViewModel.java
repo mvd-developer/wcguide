@@ -1,20 +1,16 @@
 package com.doschechko.matylionak.wcguide.maps;
 
-import android.Manifest;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.util.DisplayMetrics;
 import android.util.Log;
-import android.view.Display;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
@@ -23,9 +19,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.doschechko.matylionak.domain.entity.WcId;
 import com.doschechko.matylionak.domain.entity.WcProfileModel;
-import com.doschechko.matylionak.domain.interaction.UseCaseGetImageLinkWC;
 import com.doschechko.matylionak.domain.interaction.UseCaseGetListWC;
 import com.doschechko.matylionak.wcguide.R;
 import com.doschechko.matylionak.wcguide.base.BaseFragmentViewModel;
@@ -54,15 +48,16 @@ import static android.content.Context.LOCATION_SERVICE;
 
 public class Activity_MapsViewModel implements BaseFragmentViewModel, OnMapReadyCallback
         , GoogleMap.OnMarkerClickListener
-        , GoogleMap.OnInfoWindowClickListener {
+        , GoogleMap.OnInfoWindowClickListener
 
+{
 
     private Activity_Maps activity;
     Activity_MapsViewModel activity_mapsViewModel = this;
     FragmentManager manager;
     private ArrayList<WcProfileModel> listWc;
     private UseCaseGetListWC useCaseGetListWC = new UseCaseGetListWC();
-    private UseCaseGetImageLinkWC useCaseGetImageLinkWC = new UseCaseGetImageLinkWC();
+    // private UseCaseGetImageLinkWC useCaseGetImageLinkWC = new UseCaseGetImageLinkWC();
     private SupportMapFragment mapFragment;
     private boolean visibleOnScreen = false;
     private View mapView;
@@ -70,7 +65,8 @@ public class Activity_MapsViewModel implements BaseFragmentViewModel, OnMapReady
     private Location location;
     private GoogleMap googleMap;
     private boolean isFirstStart = true;
-    private String urlImageGlideurl;
+    private boolean getPermission = true;
+    //private String urlImageGlideurl;
     //  private boolean isContinue=false;
 
 
@@ -82,44 +78,39 @@ public class Activity_MapsViewModel implements BaseFragmentViewModel, OnMapReady
         this.activity = activity;
     }
 
+    public void setGetPermission(boolean getPermission) {
+        this.getPermission = getPermission;
+    }
+
     @Override
     public void init() {
+
         Toast.makeText(activity.getContext(),
                 R.string.loading_data,
                 Toast.LENGTH_LONG).show();
         visibleOnScreen = true;
-        Log.e("final ", " init  ");
         useCaseGetListWC.execute(null, new DisposableObserver<List<WcProfileModel>>() {
             @Override
             public void onNext(@NonNull List<WcProfileModel> wcProfileModels) {
                 listWc = new ArrayList<>();
                 listWc.addAll(wcProfileModels);
-                Log.e("final ", " onNext 00 " + listWc.size());
-                /////////////////для логов
-//                for (WcProfileModel list : listWc) {
-//                    Log.e("final ", " resume MapsViewModel onNext " + list.toString() + "\n" +
-//                            list.getCoordinats().split(",")[0].toString());
-//
-//                }
-                //проверка на состояние активити, чтобы не было краша
+
+                //проверка на состояние активити
                 if (visibleOnScreen) {
                     mapFragment = (SupportMapFragment) activity.getChildFragmentManager().findFragmentById(R.id.map);
                     mapFragment.getMapAsync(activity_mapsViewModel);
                     mapView = mapFragment.getView();
                 }
             }
-
             @Override
             public void onError(@NonNull Throwable e) {
 
-                Log.e("final ", " onError ");
                 Toast.makeText(activity.getContext(),
                         R.string.noInternetConnection,
                         Toast.LENGTH_SHORT).show();
                 if (visibleOnScreen) {
                     activity.startActivity(new Intent(activity.getContext(), MainActivity.class));
                 }
-
             }
 
             @Override
@@ -128,8 +119,6 @@ public class Activity_MapsViewModel implements BaseFragmentViewModel, OnMapReady
                 Toast.makeText(activity.getContext(),
                         R.string.mapLoaded,
                         Toast.LENGTH_LONG).show();
-                //state.set(STATE.DATA);
-                Log.e("final ", " onComplete ");
 
             }
         });
@@ -137,7 +126,6 @@ public class Activity_MapsViewModel implements BaseFragmentViewModel, OnMapReady
 
     @Override
     public void resume() {
-        Log.e("final ", " resume  ");
 
 
     }
@@ -147,7 +135,6 @@ public class Activity_MapsViewModel implements BaseFragmentViewModel, OnMapReady
         if (locationListener != null && locationManager != null)
             locationManager.removeUpdates(locationListener);
         visibleOnScreen = false;
-        Log.e("final ", " pause  ");
 
 
         if (useCaseGetListWC != null)
@@ -157,17 +144,14 @@ public class Activity_MapsViewModel implements BaseFragmentViewModel, OnMapReady
 УДАЛЯЕМ ФРАГМЕНТ с родительского фрагмента - это не баг, а фича Google Maps v2
  :-))))
  */
-       FragmentManager managerA = activity.getChildFragmentManager();
+        FragmentManager managerA = activity.getChildFragmentManager();
 
-        Log.e("finalize ", " pause - manage to delite MAP  ");
         try {
             if (mapFragment != null) {
-                Log.e("finalize ", " remove   manage to delite MAP");
-              FragmentTransaction transaction = managerA.beginTransaction().remove(mapFragment);
+                FragmentTransaction transaction = managerA.beginTransaction().remove(mapFragment);
                 transaction.commitNow();
             }
         } catch (Exception e) {
-            Log.e("finalize ", " THIS IS EXEPTION");
 
         }
 
@@ -175,11 +159,6 @@ public class Activity_MapsViewModel implements BaseFragmentViewModel, OnMapReady
 
     @Override
     public void release() {
-//        Log.e("finalize ", " release  ");
-//        if(mapFragment!=null){
-//            Log.e("finalize ", " remove  ");
-//            manager.beginTransaction().remove(mapFragment).commit();
-//        }
 
     }
 
@@ -195,38 +174,32 @@ public class Activity_MapsViewModel implements BaseFragmentViewModel, OnMapReady
     private LocationListener locationListener = new LocationListener() {
         @Override
         public void onLocationChanged(Location location) {
-
-            Log.e("final ", " onLocationChanged ");
-            Log.e("final ", " location " + location.getLongitude() + " " + location.getLatitude());
-            setLocation(location);
-            //только при первом запуске центрирование по местоположению
-            if (location != null && isFirstStart) {
-                Log.e("final ", " location!=null ");
-                CameraPosition cameraPosition = new CameraPosition.Builder().target(
-                        new LatLng(location.getLatitude(), location.getLongitude())).zoom(15).build();
-                googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+            if(getPermission) {
+                setLocation(location);
+                //только при первом запуске центрирование по местоположению
+                if (location != null && isFirstStart) {
+                    CameraPosition cameraPosition = new CameraPosition.Builder().target(
+                            new LatLng(location.getLatitude(), location.getLongitude())).zoom(15).build();
+                    googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+                }
+                isFirstStart = false;
+                //для отключения слушателя, потому что он нам больш6:е не надо
+                if (locationListener != null && locationManager != null)
+                    locationManager.removeUpdates(locationListener);
             }
-            isFirstStart = false;
-            //для отключения слушателя, потому что он нам больш6:е не надо
-            if (locationListener != null && locationManager != null)
-                locationManager.removeUpdates(locationListener);
-            Log.e("final ", " locationListener is removed ");
         }
 
         @Override
         public void onStatusChanged(String provider, int status, Bundle extras) {
-            Log.e("final ", " onStatusChanged ");
         }
 
         @Override
         public void onProviderEnabled(String provider) {
-            Log.e("final ", " onProviderEnabled ");
 
         }
 
         @Override
         public void onProviderDisabled(String provider) {
-            Log.e("final ", " onProviderDisabled ");
 
         }
     };
@@ -237,7 +210,7 @@ public class Activity_MapsViewModel implements BaseFragmentViewModel, OnMapReady
         setGoogleMap(googleMap);
         googleMap.setOnMarkerClickListener(this);
         googleMap.setOnInfoWindowClickListener(this);
-        Log.e("final ", " onMapReady  ");
+
         googleMap.getUiSettings().setZoomControlsEnabled(true);//кнопки зума
 
         //перемещает кнопку MyLocationButton на нижнюю треть экрана
@@ -248,29 +221,15 @@ public class Activity_MapsViewModel implements BaseFragmentViewModel, OnMapReady
         rlp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE);
 
 
-        Log.e("display ", " height " + getDisplaySizes()[0] + " width " + getDisplaySizes()[1]);
-        // rlp.setMargins(0, 0, 30, 400);
         rlp.setMargins(0, 0, 30, getDisplaySizes()[0] / 3);
 
-
-        //googleMap.getUiSettings().setMyLocationButtonEnabled(true);//установка кнопки текущего местоположения
-        if (ActivityCompat.checkSelfPermission(activity.getContext(), Manifest.permission.ACCESS_FINE_LOCATION) !=
-                PackageManager.PERMISSION_GRANTED
-                && ActivityCompat.checkSelfPermission(activity.getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) !=
-                PackageManager.PERMISSION_GRANTED) {
-            return;
-        }
-        googleMap.setMyLocationEnabled(true);//разрешение на определение текущего местополощения
         googleMap.setMapType(com.google.android.gms.maps.GoogleMap.MAP_TYPE_NORMAL);//установка типа карты
-        Log.e("final ", " onMapReady 22 ");
         double latitude = 0.0;
         double longitude = 0.0;
 
 
-        Log.e("final ", " onMapReady 33 " + listWc.size());
 
         for (int i = 0; i < listWc.size(); i++) {//расставляем точки из листа,который пришел с сервера
-            Log.e("final ", " onMapReady MapsViewModel onNext " + i);
             LatLng coordinatsWC;
             try {
 
@@ -280,16 +239,13 @@ public class Activity_MapsViewModel implements BaseFragmentViewModel, OnMapReady
                 longitude = Double.valueOf(strLongitude);
             } catch (Exception e) {
 
-                Log.e("wcerror ", e.toString() + latitude + " " + longitude);
                 continue;
 
             }
-            Log.e("wcerror ", "i " + i);
             coordinatsWC = new LatLng(latitude, longitude);
             String markerSnippet = listWc.get(i).getWork_time() + "\n" + "Подробнее...";
             String markerTitle = listWc.get(i).getAddress();
 
-            Log.e("marker ", markerSnippet + " " + markerTitle);
             MarkerOptions markerOptions = new MarkerOptions()
                     .position(coordinatsWC)
                     .title(markerTitle)
@@ -301,13 +257,11 @@ public class Activity_MapsViewModel implements BaseFragmentViewModel, OnMapReady
                 @Override
                 public View getInfoWindow(Marker arg0) {
 
-                    Log.e("urlImageGlideurl ", " getInfoWindow ");
                     return null;
                 }
 
                 @Override
                 public View getInfoContents(Marker marker) {
-                    Log.e("urlImageGlideurl ", "кастомное инфовью ");
 
                     LinearLayout info = new LinearLayout(activity.getContext());
                     info.setOrientation(LinearLayout.VERTICAL);
@@ -331,7 +285,6 @@ public class Activity_MapsViewModel implements BaseFragmentViewModel, OnMapReady
                     int widthTitle = title.getMeasuredWidth(); // ширина по адресу
 
                     finalSize = widthSnippet > widthTitle ? widthSnippet : widthTitle;
-                    Log.e("title", finalSize + " " + widthSnippet + " " + widthTitle);
                     int height = getDisplaySizes()[0] / 8;//
                     //задаем размеры менюшки
                     LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(finalSize, height);
@@ -340,45 +293,8 @@ public class Activity_MapsViewModel implements BaseFragmentViewModel, OnMapReady
 
                     final ImageView imageView = new ImageView(activity.getContext());
                     imageView.setLayoutParams(layoutParams);
-                    Log.e("urlImageGlideurl", "marker.getTag().toString() " + marker.getTag().toString());
-//                    useCaseGetImageLinkWC.execute(new WcId(marker.getTag().toString()), new DisposableObserver<WcProfileModel>() {
-//                        @Override
-//                        public void onNext(@NonNull WcProfileModel wcProfileModel) {
-//                            urlImageGlideurl = wcProfileModel.getImage();
-//                            Log.e("urlImageGlideurl ", "url " + urlImageGlideurl);
-////                            if (urlImageGlideurl != null) {
-////                                Activity_Item_WC_ViewModel.loadImageWC(imageView, urlImageGlideurl);
-////                            } else {
-////
-////                                imageView.setImageResource(R.drawable.no_photo);
-////                            }
-//
-//                            Log.e("urlImageGlideurl ", "url in excecute " + urlImageGlideurl);
-//                        }
-//
-//                        @Override
-//                        public void onError(@NonNull Throwable e) {
-//                            isContinue=true;
-//
-//                        }
-//
-//                        @Override
-//                        public void onComplete() {
-//                            Log.e("urlImageGlideurl ", "onComplete " + urlImageGlideurl);
-//                            isContinue=true;
-//
-//
-//                        }
-//                    });
 
-
-                    //  Log.e("urlImageGlideurl ", "url polsle anonima " + urlImageGlideurl);
-//                    if(urlImageGlideurl!=null) {
-//                        Activity_Item_WC_ViewModel.loadImageWC(imageView, urlImageGlideurl);
-//                    }else {
-//                        imageView.setImageResource(R.drawable.no_photo);
-//                    }
-                    imageView.setImageResource(R.drawable.no_photo);
+                    imageView.setImageResource(R.drawable.splash_proper_min);
                     //добавляем элементы в менюшку
                     info.addView(imageView);
                     info.addView(title);
@@ -389,7 +305,12 @@ public class Activity_MapsViewModel implements BaseFragmentViewModel, OnMapReady
             });
 
             if (OpenCloseWC(listWc.get(i).getWork_time())) {
-                markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.toilet_ac_blue_small));
+
+                if (listWc.get(i).getCost().equalsIgnoreCase("платный")) {
+
+                    markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.toilet_ac_small_gold));
+                } else
+                    markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.toilet_ac_blue_small));
             } else {
                 markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.toilet_ac_red_small));
             }
@@ -399,21 +320,20 @@ public class Activity_MapsViewModel implements BaseFragmentViewModel, OnMapReady
             //по этому номеру будем открывать подробности об этом элементе
 
         }
-        Log.e("final ", " for otrabotal ");
 
-        //эта куча кода для получения текушего местоположения
-        locationManager = (LocationManager) activity.getContext().getSystemService(LOCATION_SERVICE);
+        if(getPermission) {
+            googleMap.setMyLocationEnabled(true);//разрешение на определение текущего местополощения
 
-        if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-            Log.e("final ", "LocationManager.GPS_PROVIDER " + locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER));
-            locationManager.requestLocationUpdates(locationManager.GPS_PROVIDER, 50, 1, locationListener);
+            //эта куча кода для получения текушего местоположения
+            locationManager = (LocationManager) activity.getContext().getSystemService(LOCATION_SERVICE);
+
+            if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+                locationManager.requestLocationUpdates(locationManager.GPS_PROVIDER, 50, 1, locationListener);
+            }
+            if (locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
+                locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 50, 1, locationListener);
+            }
         }
-        if (locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
-            Log.e("final ", "LocationManager.NETWORK_PROVIDER " + locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER));
-            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 50, 1, locationListener);
-        }
-        Log.e("final ", " locationManager toString" + locationManager.toString());
-        Log.e("final ", " locationManager providers 2" + locationManager.getAllProviders().toString());
         //location = locationManager.getLastKnownLocation(locationManager.getBestProvider(new Criteria(), true));
 
         //устанавливаем  камеру на текущее местоположение с коэф. 15 без анимации
@@ -461,11 +381,7 @@ public class Activity_MapsViewModel implements BaseFragmentViewModel, OnMapReady
             workWcTimeStart = simpleDateFormat.parse(wcStart).getTime();
             workWcTimeEnd = simpleDateFormat.parse(wcEnd).getTime();
             currentTime = simpleDateFormat.parse(simpleDateFormat.format(new Date())).getTime();
-            Log.e("time ", " wcStart" + wcStart + "xs");
-            Log.e("time ", " wcEnd" + wcEnd + "sss");
-            Log.e("time ", " currentTime " + currentTime);
         } catch (ParseException e) {
-            Log.e("time ", " parse exception");
         }
         //проверка на время окончания работы, если до полуночи
         if ((workWcTimeStart < currentTime) && wcEnd.equals("00:00"))
@@ -491,7 +407,6 @@ public class Activity_MapsViewModel implements BaseFragmentViewModel, OnMapReady
 
     @Override
     public boolean onMarkerClick(Marker marker) {
-        Log.e("final ", " onMarkerClick ");
 
         //return true;
         return false;
@@ -500,18 +415,15 @@ public class Activity_MapsViewModel implements BaseFragmentViewModel, OnMapReady
     @Override
     public void onInfoWindowClick(Marker marker) {
 
-        Log.e("final ", " onInfoWindowClick ");
-        Log.e("final ", " oblect Id on marker " + marker.getTag());
         Bundle bundle = new Bundle();
         bundle.putString("bundle_item_wc", marker.getTag().toString());
         FragmentManager fragManager = activity.getActivity().getSupportFragmentManager();
-        Activity_Item_WC activity_item_wc = Activity_Item_WC.newInstance(fragManager,"Activity_Item_WC");
+        Activity_Item_WC activity_item_wc = Activity_Item_WC.newInstance(fragManager, "Activity_Item_WC");
         activity_item_wc.setArguments(bundle);
         try {
-            ToolBarFragmentActivityViewModel.showFragment(fragManager,activity_item_wc, true);//а поставлю-ка я тут true
+            ToolBarFragmentActivityViewModel.showFragment(fragManager, activity_item_wc, true);//а поставлю-ка я тут true
         } catch (Exception e) {
 
-            Log.e("wcerror ", e.toString());
         }
     }
 
@@ -524,4 +436,6 @@ public class Activity_MapsViewModel implements BaseFragmentViewModel, OnMapReady
         int[] dispSizesArr = {height, width};
         return dispSizesArr;
     }
+
+
 }

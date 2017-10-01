@@ -14,7 +14,7 @@ import io.reactivex.functions.Function;
 
 
 public class UseCaseGetAndekdot extends UseCase<List<AnekdotData>, List<Anekdot>> {
-    //private static int index = 0;
+
     public static int index = 0;
     @Override
     protected Observable<List<Anekdot>> builtUseCase(List<AnekdotData> anekdotDatas) {

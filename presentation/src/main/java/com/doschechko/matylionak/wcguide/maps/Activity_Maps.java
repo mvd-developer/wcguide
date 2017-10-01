@@ -17,7 +17,9 @@ import static com.doschechko.matylionak.wcguide.CONSTANTS.TEXT_KEY;
 
 public class Activity_Maps extends BaseFragment {
 
-    private String text;
+   // private String text;
+    private boolean permission;
+
 
     @Nullable
     @Override
@@ -33,11 +35,11 @@ public class Activity_Maps extends BaseFragment {
         viewModel.setActivity(this);
         //
         viewModel.setManager(getActivity().getSupportFragmentManager());
+        viewModel.setGetPermission(permission);
 
 
         return mView;
     }
-
 
     public static Activity_Maps newInstance(FragmentManager fragmentManager, String text) {
         Fragment fragment = fragmentManager
@@ -59,10 +61,13 @@ public class Activity_Maps extends BaseFragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
         Bundle bundle = getArguments();
+
         if (bundle != null) {
 
-            text = bundle.getString(TEXT_KEY);
+            permission = bundle.getBoolean("permission");
         }
 
     }
