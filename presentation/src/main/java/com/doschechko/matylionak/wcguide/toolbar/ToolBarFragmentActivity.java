@@ -4,10 +4,12 @@ import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
 import android.widget.SlidingDrawer;
 import android.widget.Toast;
 
+import com.doschechko.matylionak.wcguide.MyDialog;
 import com.doschechko.matylionak.wcguide.R;
 import com.doschechko.matylionak.wcguide.base.BaseFragmentActivity;
 import com.doschechko.matylionak.wcguide.databinding.ToolbarBinding;
@@ -49,6 +51,9 @@ public class ToolBarFragmentActivity extends BaseFragmentActivity {
 //                    Activity_Maps.newInstance(getSupportFragmentManager(), "Activity_Maps"), true);
 //          //  Toast.makeText(getBaseContext(),"Добро пожаловать!", Toast.LENGTH_SHORT).show();
 //        }
+
+
+
 
         super.onCreate(savedInstanceState);
 

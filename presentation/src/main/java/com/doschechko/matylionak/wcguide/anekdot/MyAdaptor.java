@@ -5,7 +5,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
-import com.doschechko.matylionak.data.entity.AnekdotData;
 import com.doschechko.matylionak.domain.entity.Anekdot;
 import com.doschechko.matylionak.wcguide.databinding.ItemAnekdotBinding;
 

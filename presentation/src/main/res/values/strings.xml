@@ -12,15 +12,7 @@
     <string name="citaty">Цитаты</string>
     <string name="anekdoty">Анекдоты</string>
     <string name="feedback">Обратная связь</string>
-    <string name="lorem">
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ac sapien vel metus pharetra lobortis
-        nec nec metus. In sagittis eleifend congue. Curabitur quis condimentum ligula. Mauris aliquet
-        viverra tellus, pharetra sagittis diam aliquet maximus. Phasellus tincidunt nisl at lacus feugiat,
-        eu bibendum mi tristique. Nullam malesuada mi et purus tincidunt mattis. Fusce vestibulum diam in
-        tortor scelerisque, a iaculis lectus tincidunt. Morbi posuere vulputate maximus. In id nulla condimentum,
-        maximus tellus at, varius arcu. Sed lobortis sagittis metus a efficitur.
-</string>
     <string name="feed_back_text">Приложение "Минский туалетный гид" - создано специально  для минчан и гостей столицы.
     </string>
 
@@ -69,8 +61,17 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ac sapien vel met
     mvd.developer@gmail.com</string>
     <string name="share_this_app">Поделиться знаниями</string>
     <string name="inform_us">Приложение \"Минский туалетный гид\"© призвано сказать любой нужде НЕТ! Мы делаем все
-возможное, чтобы поддерживать базу общественных туалетов в актуальном состоянии. Однако порой не все в наших силах.
-Если вы заметели некоторую неточность либо же знаете о сущестовании туалета, который не отображен на карте -
+возможное, чтобы поддерживать базу общественных туалетов в актуальном состоянии. Но порой не все в наших силах.
+Если вы заметили некоторую неточность либо же знаете о существовании туалета, который не отображен на карте -
 поделитесь с нами вашими знаниями. Мы как можно скорее внесем новый объект на карту.</string>
     <string name="put_your_text">Вы можете описать новый туалет здесь.</string>
+    <string name="description">Приветствуем вас в самом человеческом приложении - "Минский туалетный гид"!</string>
+    <string name="description_pay">Туалет платный, функционирующий в настоящее время"</string>
+    <string name="description_free">Туалет бесплатный, функционирующий в настоящее время"</string>
+    <string name="description_closed">Туалет закрыт, время работы истекло."</string>
+
+    <string name="ok">OK</string>
+    <string name="show_it_again">Больше не напоминать"</string>
+
+
 </resources>

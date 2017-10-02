@@ -8,7 +8,6 @@ import android.graphics.Path;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
-import android.widget.Button;
 
 import com.doschechko.matylionak.wcguide.R;
 

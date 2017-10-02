@@ -53,6 +53,10 @@ public class ToolBarFragmentActivityViewModel implements BaseFragmentActivityVie
 
     @Override
     public void init() {
+        //
+
+
+        //
         Bundle bundle = new Bundle();
         bundle.putBoolean("permission", permission);
         Activity_Maps activity_Maps = new Activity_Maps().newInstance(fragmentManager,"Activity_Maps");

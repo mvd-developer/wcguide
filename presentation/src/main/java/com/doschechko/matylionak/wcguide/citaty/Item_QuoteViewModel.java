@@ -1,9 +1,7 @@
 package com.doschechko.matylionak.wcguide.citaty;
 
 
-import android.content.Intent;
 import android.databinding.ObservableField;
-import android.widget.Toast;
 
 
 public class Item_QuoteViewModel {

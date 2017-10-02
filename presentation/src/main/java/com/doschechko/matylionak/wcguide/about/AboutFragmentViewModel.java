@@ -3,11 +3,9 @@ package com.doschechko.matylionak.wcguide.about;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
-import android.support.v4.app.ShareCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.doschechko.matylionak.wcguide.base.BaseFragmentViewModel;
 import com.doschechko.matylionak.wcguide.databinding.ActivityAboutBinding;

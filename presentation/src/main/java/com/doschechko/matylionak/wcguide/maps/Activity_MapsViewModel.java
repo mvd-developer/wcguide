@@ -1,6 +1,8 @@
 package com.doschechko.matylionak.wcguide.maps;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.location.Location;
@@ -21,6 +23,8 @@ import android.widget.Toast;
 
 import com.doschechko.matylionak.domain.entity.WcProfileModel;
 import com.doschechko.matylionak.domain.interaction.UseCaseGetListWC;
+import com.doschechko.matylionak.wcguide.CONSTANTS;
+import com.doschechko.matylionak.wcguide.MyDialog;
 import com.doschechko.matylionak.wcguide.R;
 import com.doschechko.matylionak.wcguide.base.BaseFragmentViewModel;
 import com.doschechko.matylionak.wcguide.main.MainActivity;
@@ -84,6 +88,16 @@ public class Activity_MapsViewModel implements BaseFragmentViewModel, OnMapReady
 
     @Override
     public void init() {
+        //проверям наличие наших настроек
+        SharedPreferences preferences = activity.getActivity()
+                .getSharedPreferences(CONSTANTS.PREFERENCE, Context.MODE_PRIVATE);
+        int flag = preferences.getInt(CONSTANTS.SHOW_AGAIN, 0);
+        if (flag == 0) {
+            //показываем легенду карты
+            MyDialog dialogFragment = new MyDialog();
+            dialogFragment.show(manager, "string");
+            //
+        }
 
         Toast.makeText(activity.getContext(),
                 R.string.loading_data,
@@ -102,6 +116,7 @@ public class Activity_MapsViewModel implements BaseFragmentViewModel, OnMapReady
                     mapView = mapFragment.getView();
                 }
             }
+
             @Override
             public void onError(@NonNull Throwable e) {
 
@@ -140,10 +155,7 @@ public class Activity_MapsViewModel implements BaseFragmentViewModel, OnMapReady
         if (useCaseGetListWC != null)
             useCaseGetListWC.dispose();
 
-/*
-УДАЛЯЕМ ФРАГМЕНТ с родительского фрагмента - это не баг, а фича Google Maps v2
- :-))))
- */
+
         FragmentManager managerA = activity.getChildFragmentManager();
 
         try {
@@ -174,7 +186,7 @@ public class Activity_MapsViewModel implements BaseFragmentViewModel, OnMapReady
     private LocationListener locationListener = new LocationListener() {
         @Override
         public void onLocationChanged(Location location) {
-            if(getPermission) {
+            if (getPermission) {
                 setLocation(location);
                 //только при первом запуске центрирование по местоположению
                 if (location != null && isFirstStart) {
@@ -226,7 +238,6 @@ public class Activity_MapsViewModel implements BaseFragmentViewModel, OnMapReady
         googleMap.setMapType(com.google.android.gms.maps.GoogleMap.MAP_TYPE_NORMAL);//установка типа карты
         double latitude = 0.0;
         double longitude = 0.0;
-
 
 
         for (int i = 0; i < listWc.size(); i++) {//расставляем точки из листа,который пришел с сервера
@@ -321,7 +332,7 @@ public class Activity_MapsViewModel implements BaseFragmentViewModel, OnMapReady
 
         }
 
-        if(getPermission) {
+        if (getPermission) {
             googleMap.setMyLocationEnabled(true);//разрешение на определение текущего местополощения
 
             //эта куча кода для получения текушего местоположения
@@ -421,7 +432,7 @@ public class Activity_MapsViewModel implements BaseFragmentViewModel, OnMapReady
         Activity_Item_WC activity_item_wc = Activity_Item_WC.newInstance(fragManager, "Activity_Item_WC");
         activity_item_wc.setArguments(bundle);
         try {
-            ToolBarFragmentActivityViewModel.showFragment(fragManager, activity_item_wc, true);//а поставлю-ка я тут true
+            ToolBarFragmentActivityViewModel.showFragment(fragManager, activity_item_wc, true);
         } catch (Exception e) {
 
         }

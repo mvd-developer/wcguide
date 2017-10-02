@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 
 import com.doschechko.matylionak.wcguide.R;
 import com.doschechko.matylionak.wcguide.base.BaseFragment;
-import com.doschechko.matylionak.wcguide.citaty.Activity_Authors;
 import com.doschechko.matylionak.wcguide.databinding.ActivityHoroscopeBinding;
 
 import static com.doschechko.matylionak.wcguide.CONSTANTS.TEXT_KEY;
