@@ -98,11 +98,12 @@ public class Activity_MapsViewModel implements BaseFragmentViewModel, OnMapReady
             dialogFragment.show(manager, "string");
             //
         }
-
-        Toast.makeText(activity.getContext(),
-                R.string.loading_data,
-                Toast.LENGTH_LONG).show();
         visibleOnScreen = true;
+        if (visibleOnScreen) {
+            Toast.makeText(activity.getContext(),
+                    R.string.loading_data,
+                    Toast.LENGTH_LONG).show();
+        }
         useCaseGetListWC.execute(null, new DisposableObserver<List<WcProfileModel>>() {
             @Override
             public void onNext(@NonNull List<WcProfileModel> wcProfileModels) {
@@ -111,6 +112,7 @@ public class Activity_MapsViewModel implements BaseFragmentViewModel, OnMapReady
 
                 //проверка на состояние активити
                 if (visibleOnScreen) {
+                    Log.e("visible", "onNext " + visibleOnScreen);
                     mapFragment = (SupportMapFragment) activity.getChildFragmentManager().findFragmentById(R.id.map);
                     mapFragment.getMapAsync(activity_mapsViewModel);
                     mapView = mapFragment.getView();
@@ -131,9 +133,12 @@ public class Activity_MapsViewModel implements BaseFragmentViewModel, OnMapReady
             @Override
             public void onComplete() {
 
+                Log.e("visible", "onComplete " + visibleOnScreen);
+
                 Toast.makeText(activity.getContext(),
                         R.string.mapLoaded,
-                        Toast.LENGTH_LONG).show();
+                        Toast.LENGTH_SHORT).show();
+
 
             }
         });
@@ -147,9 +152,11 @@ public class Activity_MapsViewModel implements BaseFragmentViewModel, OnMapReady
 
     @Override
     public void pause() {
-        if (locationListener != null && locationManager != null)
-            locationManager.removeUpdates(locationListener);
         visibleOnScreen = false;
+        Log.e("visible", "pause " + visibleOnScreen);
+        if (locationListener != null && locationManager != null) {
+            locationManager.removeUpdates(locationListener);
+        }
 
 
         if (useCaseGetListWC != null)
@@ -317,7 +324,7 @@ public class Activity_MapsViewModel implements BaseFragmentViewModel, OnMapReady
 
             if (OpenCloseWC(listWc.get(i).getWork_time())) {
 
-                if (listWc.get(i).getCost().equalsIgnoreCase("платный")) {
+                if (listWc.get(i).getCost() == null || listWc.get(i).getCost().equalsIgnoreCase("платный")) {
 
                     markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.toilet_ac_small_gold));
                 } else
@@ -361,7 +368,11 @@ public class Activity_MapsViewModel implements BaseFragmentViewModel, OnMapReady
 
     //проверяет, работает ли туалет в текущий момент
     private boolean OpenCloseWC(String work_time) {
+        //проверка на пустые поля в таблице
+        if ((work_time == null) || work_time.equals("")) {
+            return false;
 
+        }
         String[] arrWorkWcTime;
         String wcStart;
         String wcEnd;

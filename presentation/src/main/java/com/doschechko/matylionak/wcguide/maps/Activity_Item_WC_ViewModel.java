@@ -149,7 +149,7 @@ public class Activity_Item_WC_ViewModel implements BaseFragmentViewModel {
     }
     @BindingAdapter("android:intosrc")
     public static void loadImageWC(ImageView view, String url) {
-        if(url!=null) {
+        if(url!=null&&!(url.equals(""))) {
             Log.e("urlImageGlideurl ", "url in loadImageWC " + url);
             Glide.with(view.getContext())
                     .load(url)

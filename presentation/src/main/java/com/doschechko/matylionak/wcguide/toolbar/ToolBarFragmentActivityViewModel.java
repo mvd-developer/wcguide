@@ -60,7 +60,7 @@ public class ToolBarFragmentActivityViewModel implements BaseFragmentActivityVie
         Bundle bundle = new Bundle();
         bundle.putBoolean("permission", permission);
         Activity_Maps activity_Maps = new Activity_Maps().newInstance(fragmentManager,"Activity_Maps");
-        activity_Maps.setArguments(bundle);
+;        activity_Maps.setArguments(bundle);
         showFragment(fragmentManager, activity_Maps , false);
        //тут был  true (нюанс был только в белом экране когда true, при false - при сворачивании не создавало активити)
 
