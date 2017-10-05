@@ -65,9 +65,9 @@
 Если вы заметили некоторую неточность либо же знаете о существовании туалета, который не отображен на карте -
 поделитесь с нами вашими знаниями. Мы как можно скорее внесем новый объект на карту.</string>
     <string name="put_your_text">Вы можете описать новый туалет здесь.</string>
-    <string name="description">Приветствуем вас в самом человеческом приложении - "Минский туалетный гид"!</string>
-    <string name="description_pay">Туалет платный, функционирующий в настоящее время"</string>
-    <string name="description_free">Туалет бесплатный, функционирующий в настоящее время"</string>
+    <string name="description">Специальные обозначения</string>
+    <string name="description_pay">Туалет платный, сейчас открыт"</string>
+    <string name="description_free">Туалет бесплатный, сейчас открыт"</string>
     <string name="description_closed">Туалет закрыт, время работы истекло."</string>
 
     <string name="ok">OK</string>

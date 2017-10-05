@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
+import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.SlidingDrawer;
 import android.widget.Toast;
 
@@ -42,7 +44,6 @@ public class ToolBarFragmentActivity extends BaseFragmentActivity {
 
         SlidingDrawer drawer = binding.SlidingDrawer;
         viewModel.setSlidingDrawer(drawer);
-
 
 //        //    для загрузки карты
 //        if (savedInstanceState == null) {

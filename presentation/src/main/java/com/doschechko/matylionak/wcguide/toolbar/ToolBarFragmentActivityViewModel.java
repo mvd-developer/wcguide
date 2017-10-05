@@ -6,7 +6,9 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.widget.SlidingDrawer;
+
 import com.doschechko.matylionak.wcguide.R;
 import com.doschechko.matylionak.wcguide.about.AboutFragment;
 import com.doschechko.matylionak.wcguide.anekdot.Activity_Anekdot;
@@ -39,7 +41,6 @@ public class ToolBarFragmentActivityViewModel implements BaseFragmentActivityVie
     }
 
 
-
     public void setFragmentManager(FragmentManager fragmentManager) {
         this.fragmentManager = fragmentManager;
     }
@@ -53,16 +54,12 @@ public class ToolBarFragmentActivityViewModel implements BaseFragmentActivityVie
 
     @Override
     public void init() {
-        //
-
-
-        //
         Bundle bundle = new Bundle();
         bundle.putBoolean("permission", permission);
-        Activity_Maps activity_Maps = new Activity_Maps().newInstance(fragmentManager,"Activity_Maps");
-;        activity_Maps.setArguments(bundle);
-        showFragment(fragmentManager, activity_Maps , false);
-       //тут был  true (нюанс был только в белом экране когда true, при false - при сворачивании не создавало активити)
+        Activity_Maps activity_Maps = new Activity_Maps().newInstance(fragmentManager, "Activity_Maps");
+
+        activity_Maps.setArguments(bundle);
+        showFragment(fragmentManager, activity_Maps, false);
 
     }
 
@@ -84,29 +81,29 @@ public class ToolBarFragmentActivityViewModel implements BaseFragmentActivityVie
 
     public void onClickOpenAbout() {
         //it starts an AboutUsActivity
-        showFragment(fragmentManager, AboutFragment.newInstance(fragmentManager,"AboutFragment"), true);//false
-        slidingDrawer.animateClose();
+        showFragment(fragmentManager, AboutFragment.newInstance(fragmentManager, "AboutFragment"), true);//false
+        closeDrawer();
     }
 
 
     public void onClickOpenQuote() {
         //it starts an Activity_Quote
-        showFragment(fragmentManager, Activity_Authors.newInstance(fragmentManager,"Activity_Authors"), true);
-        slidingDrawer.animateClose();
+        showFragment(fragmentManager, Activity_Authors.newInstance(fragmentManager, "Activity_Authors"), true);
+        closeDrawer();
     }
 
 
     public void onClickOpenHoroscope() {
         //it starts an Activity_Horoscope
-        showFragment(fragmentManager, Activity_Horoscope.newInstance(fragmentManager,"Activity_Horoscope"), true);
-        slidingDrawer.animateClose();
+        showFragment(fragmentManager, Activity_Horoscope.newInstance(fragmentManager, "Activity_Horoscope"), true);
+        closeDrawer();
     }
 
 
     public void onClickOpenAnekdot() {
         //it starts an Activity_Anekdot
-        showFragment(fragmentManager, Activity_Anekdot.newInstance(fragmentManager,"Activity_Anekdot"), true);
-        slidingDrawer.animateClose();
+        showFragment(fragmentManager, Activity_Anekdot.newInstance(fragmentManager, "Activity_Anekdot"), true);
+        closeDrawer();
     }
 
 
@@ -119,8 +116,7 @@ public class ToolBarFragmentActivityViewModel implements BaseFragmentActivityVie
 
     public static void showFragment(FragmentManager fragmentManager, Fragment fragment, boolean addToBackStack) {
         //здесь мы все перенесли в статический метод
-        if(fragment.isAdded())
-        {
+        if (fragment.isAdded()) {
             return;
         }
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -131,6 +127,12 @@ public class ToolBarFragmentActivityViewModel implements BaseFragmentActivityVie
 
     }
 
+
+    public  void closeDrawer() {
+        //close menu on misclick
+        slidingDrawer.animateClose();
+        Log.e("CLICK", "slidingDrawer.animateClose();");
+    }
 
     @Override
     public String[] value() {
