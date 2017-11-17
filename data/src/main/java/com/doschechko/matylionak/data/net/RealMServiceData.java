@@ -16,10 +16,7 @@ import io.reactivex.Observable;
 import io.realm.Realm;
 import io.realm.RealmResults;
 
-/**
- * Created by Umbra on 21.10.2017.
- * Локальная база данных RealM, SINGLETON
- */
+
 
 public class RealMServiceData implements Repository {
     private static final RealMServiceData instance = new RealMServiceData();
@@ -57,25 +54,8 @@ public class RealMServiceData implements Repository {
             allList.add(data);
         }
         if (!realm.isClosed()) {
-            Log.e(">>>STILL", "RealMServiceData.getWC = ХАКРЫТ РИАЛЭМ  " + Thread.currentThread().getName());
-            realm.close();
+                      realm.close();
         }
-
-
-        Log.e(">>>STILL", "RealMServiceData.getWC = ИЗ РЕАЛЭМА ПРИГШЛО  ");
-        Log.e(">>>STILL", "RealMServiceData.getWC = ЗАКОПИРОВАНЫ ДАННЫЕ  " + Thread.currentThread().getName());
-
-
-//        Observable<List<WcProfileData>> observable = realm.where(WcProfileData.class)
-//                .isNotNull("objectId").findAllAsync().asFlowable()
-//                .filter(RealmResults::isLoaded)
-//                .map(wcProfileDatas -> {
-//                    List<WcProfileData> list1 = new ArrayList<>();
-//                    list1.addAll(wcProfileDatas);
-//                    Log.e(">>>STILL", "RealMServiceData.getWC.map =" + Thread.currentThread().getName() + list1.toString());
-//                    return list1;
-//                }).toObservable();
-
         return Observable.just(allList);
 
     }
@@ -84,10 +64,9 @@ public class RealMServiceData implements Repository {
 
     public boolean loadData(List<WcProfileData> list) {
         Realm realm = Realm.getDefaultInstance();
-        Log.e(">>>STILL", "RealMServiceData.loadData ЗАПИСЬ В БАЗУ ДАННЫХ  РЕАЛЭМ = " + Thread.currentThread().getName());
+        Log.e(">>>STILL", "RealMServiceData.loadData ЗАПИСЬ В БД" + Thread.currentThread().getName());
         SimpleDateFormat ISO8601DATEFORMAT = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ", Locale.ENGLISH);
         Date date = new Date();
-        Log.e(">>>STILL", "RealMServiceData.loadData ЦИКЛ ЗАПИСИ В БАЗУ ");
         Log.e(">>>STILL", "RealMServiceData.loadData list = " + list.size());
         for (WcProfileData profileData : list) {
 
@@ -100,7 +79,7 @@ public class RealMServiceData implements Repository {
             entity.setObjectId(profileData.getObjectId());
             entity.setWork_time(profileData.getWork_time());
             entity.setLastUpdated(ISO8601DATEFORMAT.format(date));
-            Log.e(">>>STILL", "RealMServiceData.loadData  ЗАПИСАН В БАЗУ = " + profileData.toString());
+            Log.e(">>>STILL", profileData.toString());
             realm.commitTransaction();
         }
         realm.close();
