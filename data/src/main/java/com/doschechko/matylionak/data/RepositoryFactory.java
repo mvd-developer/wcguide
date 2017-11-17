@@ -20,8 +20,7 @@ public class RepositoryFactory {
     private BehaviorSubject<Boolean> subject = BehaviorSubject.createDefault(false);
 
     private RepositoryFactory() {
-        Log.e(">>>STILL", "RepositoryFactory = " + Thread.currentThread().getName());
-        rest = RestService.getInstance();
+            rest = RestService.getInstance();
         realmService = RealMServiceData.getInstance();
     }
 
@@ -31,8 +30,7 @@ public class RepositoryFactory {
 
     public Observable<Boolean> startLoading() {
         if (realmService.isCached() && !realmService.isExpired()) {
-            Log.e(">>>STILL", "ЗАГРУЗКА ИЗ РЕАЛЭМА");
-            subject.onNext(true);
+                      subject.onNext(true);
         } else {
             return   rest.getWC().map(new Function<List<WcProfileData>, Boolean>() {
                 @Override
