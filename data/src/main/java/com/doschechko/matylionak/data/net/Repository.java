@@ -10,5 +10,5 @@ import io.reactivex.Observable;
  */
 
 public interface Repository {
-    Observable<List<WcProfileData>> getWC(); //загрузка всей коллекции
+    Observable<List<WcProfileData>> getWC(); 
 }
