@@ -2,6 +2,7 @@
 
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/specialBlueColor"
@@ -13,6 +14,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:padding="10dp"
+        android:gravity="center"
         android:weightSum="20">
 
 
@@ -46,8 +48,31 @@
             android:text="@string/findWC"
             android:textAllCaps="true"
             android:textColor="@color/specialTextColor"
+            android:visibility="gone"
+            android:enabled="false"/>
 
-            />
+        <me.itangqi.waveloadingview.WaveLoadingView
+            android:id="@+id/waveLoadingView"
+            android:layout_width="200dp"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            app:wlv_borderColor="@color/colorAccent"
+            app:wlv_borderWidth="3dp"
+            app:wlv_progressValue="50"
+            app:wlv_round_rectangle="true"
+            app:wlv_shapeType="rectangle"
+            app:wlv_titleCenter=""
+            app:wlv_titleCenterColor="@color/specialWhite"
+            app:wlv_titleCenterSize="24sp"
+            app:wlv_titleCenterStrokeColor="@color/specialBlueColor"
+            app:wlv_titleCenterStrokeWidth="2dp"
+            app:wlv_triangle_direction="north"
+            app:wlv_waveAmplitude="70"
+            app:wlv_waveColor="@color/colorAccent"
+            app:wlv_wave_background_Color = "@color/specialWhite"/>
+
 
         <TextView
             android:id="@+id/disclaimer"
@@ -55,10 +80,10 @@
             android:layout_height="0dp"
             android:layout_gravity="center|bottom"
             android:layout_weight="1.5"
+            android:gravity="bottom|center"
             android:text="@string/disclaimer"
             android:textAlignment="center"
             android:textColor="@color/specialTextColor"
-            android:gravity="bottom|center"
             android:textSize="5sp" />
     </LinearLayout>
 

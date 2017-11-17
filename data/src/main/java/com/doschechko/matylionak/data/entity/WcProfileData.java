@@ -2,12 +2,14 @@ package com.doschechko.matylionak.data.entity;
 
 import com.google.gson.annotations.SerializedName;
 
+import io.realm.RealmObject;
+
 /**
  * Created by ya
  * on 14.09.2017.
  */
 
-public class WcProfileData {
+public class WcProfileData extends RealmObject{
 
     private String address;
     private String coordinats;
@@ -16,6 +18,7 @@ public class WcProfileData {
     @SerializedName("objectId")
     private String objectId;
     private String image;
+    private String lastUpdated;
 
 
     public String getCoordinats() {
@@ -64,6 +67,14 @@ public class WcProfileData {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getLastUpdated() {
+        return lastUpdated;
+    }
+
+    public void setLastUpdated(String lastUpdated) {
+        this.lastUpdated = lastUpdated;
     }
 
     @Override

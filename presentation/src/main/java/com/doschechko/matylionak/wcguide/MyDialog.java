@@ -41,7 +41,7 @@ public class MyDialog extends DialogFragment implements View.OnClickListener {
         builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 editor.putInt(CONSTANTS.SHOW_AGAIN, flag);
-                editor.commit();
+                editor.apply();
             }
         });
 

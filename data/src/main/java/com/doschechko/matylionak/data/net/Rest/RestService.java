@@ -1,13 +1,17 @@
 package com.doschechko.matylionak.data.net.Rest;
 
-/*
-API сервис для получения Obserable цитат
+/**
+ * API сервис для получения Obserable цитат, анектодотов, списков туатетов и т.д.
+ *
  */
+
+import android.util.Log;
 
 import com.doschechko.matylionak.data.entity.AnekdotData;
 import com.doschechko.matylionak.data.entity.AuthorData;
 import com.doschechko.matylionak.data.entity.QuoteData;
 import com.doschechko.matylionak.data.entity.WcProfileData;
+import com.doschechko.matylionak.data.net.Repository;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -24,7 +28,7 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class RestService {
+public class RestService implements Repository{
     private static final RestService instance = new RestService();
     private RestAPI restApi;
     private RestAPI restApiWC;
@@ -53,7 +57,7 @@ public class RestService {
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())//добавляем RX2 Java
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .client(okHttpClient).build();
-       // restApi = retrofit.create(RestAPI.class);
+        // restApi = retrofit.create(RestAPI.class);
         Retrofit retrofitWC = new Retrofit.Builder()
                 .baseUrl("https://api.backendless.com/E306428C-F94F-B3D5-FF35-6F20F9600400/A9468BE4-FCBE-67F3-FF31-1F1482C47A00/")
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())//добавляем RX2 Java
@@ -61,7 +65,6 @@ public class RestService {
                 .client(okHttpClient).build();
         restApi = retrofit.create(RestAPI.class);
         restApiWC = retrofitWC.create(RestAPI.class);
-
 
 
     }
@@ -101,52 +104,66 @@ public class RestService {
     }
 
 
-    public Observable<List<QuoteData>> getQuotesByAuthor(String s ) {
+    public Observable<List<QuoteData>> getQuotesByAuthor(String s) {
         return restApi.getQuotesByAuthor(s);
     }
 
-    //просто для автоматической загрузки анекдотов на сервер
-public void saveAnekdot(AnekdotData anekdot){
-    Call<AnekdotData> oblect = restApi.saveAnekdot(anekdot);
-    oblect.enqueue(new Callback<AnekdotData>() {
-        @Override
-        public void onResponse(Call<AnekdotData> call, Response<AnekdotData> response) {
+    //только для автоматической загрузки анекдотов на сервер
+    public void saveAnekdot(AnekdotData anekdot) {
+        Call<AnekdotData> oblect = restApi.saveAnekdot(anekdot);
+        oblect.enqueue(new Callback<AnekdotData>() {
+            @Override
+            public void onResponse(Call<AnekdotData> call, Response<AnekdotData> response) {
 
-        }
+            }
 
-        @Override
-        public void onFailure(Call<AnekdotData> call, Throwable t) {
+            @Override
+            public void onFailure(Call<AnekdotData> call, Throwable t) {
 
-        }
-    });
-}
+            }
+        });
+    }
 
 
-        //получаем по пять анекдотов с пагинацией
- public  Observable<List<AnekdotData>> getAnekdotWithNumber(String str){
+    //получаем по пять анекдотов с пагинацией
+    public Observable<List<AnekdotData>> getAnekdotWithNumber(String str) {
         return restApi.getAnekdotWithNumber(str);
     }
 
-    public Observable<Integer> getNumberOfAdekdot(){
+    public Observable<Integer> getNumberOfAdekdot() {
         return restApi.getNumberOfAdekdot();
     }
 
 
-    public Observable<WcProfileData>getProfileWC(String id){
+    //загрузка только одного объекта по id
+    public Observable<WcProfileData> getProfileWC(String id) {
         return restApiWC.getProfileWC(id);
 
     }
 
-    public Observable<WcProfileData>getImageLinkWC(String id){
+    //загрузка только картинки по id
+    public Observable<WcProfileData> getImageLinkWC(String id) {
         return restApiWC.getImageLinkWC(id);
 
     }
 
-    public Observable<List<WcProfileData>>getWCLocation(){
+    //загрузка всех объектов коллекции туалетов
+    public Observable<List<WcProfileData>> getWCLocation() {
         return restApiWC.getWCLocation();
 
     }
 
+    public Observable<Integer> getNumberOfWC() {
+        return restApiWC.getNumberOfWC();
+    }
 
+
+    //общий метод интерфейса Repository
+    @Override
+    public Observable<List<WcProfileData>> getWC() {
+        Log.e(">>>STILL", "RestService.getWC");
+        Log.e(">>>STILL", "RestServise = "+Thread.currentThread().getName());
+        return restApiWC.getWCLocation();
+    }
 
 }

@@ -55,6 +55,7 @@
     <string name="сost_pole">Категория:</string>
     <string name="loading_data">Идет загрузка данных, ожидайте...</string>
     <string name="title_activity_maps">Map</string>
+    <string name="try_else">"Попробовать еще раз"</string>
     <string name="final_text">"Минский туалетный гид"© - приложение для мобильной системы Android.
     Доступно для свободного скачивания в GooglePlay для устройств, оснащенных Android 4.1 (JELLY_BEAN) и выше.
     Замечания по поводу работы приложения, неактуальной информации присылайте на электронную почту разработчиков:
@@ -72,6 +73,6 @@
 
     <string name="ok">OK</string>
     <string name="show_it_again">Больше не напоминать"</string>
-
+    <string name="data_is_loaded">Данные загружены</string>
 
 </resources>

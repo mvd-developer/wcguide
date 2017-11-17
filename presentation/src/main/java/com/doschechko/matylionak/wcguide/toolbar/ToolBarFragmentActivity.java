@@ -28,12 +28,9 @@ public class ToolBarFragmentActivity extends BaseFragmentActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        Intent intent =getIntent();
-        Boolean getPermission=intent.getBooleanExtra("getPermission",false);
         //создаем дата-биндинг
         ToolBarFragmentActivityViewModel viewModel = new ToolBarFragmentActivityViewModel();
         viewModel.setActivity(this);
-        viewModel.setPermission(getPermission);
         FragmentManager manager = getSupportFragmentManager();
         viewModel.setFragmentManager(manager);
         this.viewModel = viewModel;

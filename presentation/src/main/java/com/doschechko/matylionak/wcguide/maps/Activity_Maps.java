@@ -17,8 +17,8 @@ import static com.doschechko.matylionak.wcguide.CONSTANTS.TEXT_KEY;
 
 public class Activity_Maps extends BaseFragment {
 
-   // private String text;
-    private boolean permission;
+
+    //private String text;
 
 
     @Nullable
@@ -33,10 +33,7 @@ public class Activity_Maps extends BaseFragment {
         View mView = binding.getRoot();
         binding.setViewModel(viewModel);
         viewModel.setActivity(this);
-        //
         viewModel.setManager(getActivity().getSupportFragmentManager());
-        viewModel.setGetPermission(permission);
-
 
         return mView;
     }
@@ -63,12 +60,12 @@ public class Activity_Maps extends BaseFragment {
         super.onCreate(savedInstanceState);
 
 
-        Bundle bundle = getArguments();
-
-        if (bundle != null) {
-
-            permission = bundle.getBoolean("permission");
-        }
+//        Bundle bundle = getArguments();
+//
+//        if (bundle != null) {
+//            text = bundle.getString(TEXT_KEY);
+//
+//        }
 
     }
 

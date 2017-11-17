@@ -1,14 +1,10 @@
-package com.doschechko.matylionak.domain.entity;
+package com.doschechko.matylionak.wcguide.service;
 
-import io.realm.RealmModel;
-import io.realm.annotations.RealmClass;
 
-/**
- * Created by ya
- * on 14.09.2017.
- */
-@RealmClass
-public class WcProfileModel implements RealmModel {
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
+
+public class WCServiceEntity extends RealmObject {
 
     private String address;
     private String coordinats;
@@ -17,13 +13,7 @@ public class WcProfileModel implements RealmModel {
     private String objectId;
     private String image;
 
-    public String getCoordinats() {
-        return coordinats;
-    }
 
-    public void setCoordinats(String coordinats) {
-        this.coordinats = coordinats;
-    }
 
     public String getAddress() {
         return address;
@@ -31,6 +21,14 @@ public class WcProfileModel implements RealmModel {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getCoordinats() {
+        return coordinats;
+    }
+
+    public void setCoordinats(String coordinats) {
+        this.coordinats = coordinats;
     }
 
     public String getCost() {
@@ -67,7 +65,7 @@ public class WcProfileModel implements RealmModel {
 
     @Override
     public String toString() {
-        return "WcProfileModel{" +
+        return "WCServiceEntity{" +
                 "address='" + address + '\'' +
                 ", coordinats='" + coordinats + '\'' +
                 ", cost='" + cost + '\'' +
@@ -76,4 +74,5 @@ public class WcProfileModel implements RealmModel {
                 ", image='" + image + '\'' +
                 '}';
     }
+
 }

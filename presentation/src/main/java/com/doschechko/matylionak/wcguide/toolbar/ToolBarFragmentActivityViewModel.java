@@ -1,6 +1,8 @@
 package com.doschechko.matylionak.wcguide.toolbar;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.databinding.BindingAdapter;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,6 +11,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.widget.SlidingDrawer;
 
+import com.doschechko.matylionak.wcguide.CONSTANTS;
 import com.doschechko.matylionak.wcguide.R;
 import com.doschechko.matylionak.wcguide.about.AboutFragment;
 import com.doschechko.matylionak.wcguide.anekdot.Activity_Anekdot;
@@ -28,13 +31,10 @@ public class ToolBarFragmentActivityViewModel implements BaseFragmentActivityVie
 
     private FragmentManager fragmentManager;
     private Activity activity;
-    private boolean permission;
 
     private SlidingDrawer slidingDrawer;
 
-    public void setPermission(boolean permission) {
-        this.permission = permission;
-    }
+
 
     public void setSlidingDrawer(SlidingDrawer slidingDrawer) {
         this.slidingDrawer = slidingDrawer;
@@ -54,12 +54,9 @@ public class ToolBarFragmentActivityViewModel implements BaseFragmentActivityVie
 
     @Override
     public void init() {
-        Bundle bundle = new Bundle();
-        bundle.putBoolean("permission", permission);
-        Activity_Maps activity_Maps = new Activity_Maps().newInstance(fragmentManager, "Activity_Maps");
-
-        activity_Maps.setArguments(bundle);
-        showFragment(fragmentManager, activity_Maps, false);
+        SharedPreferences preferences = activity.getSharedPreferences(CONSTANTS.PREFERENCE, Context.MODE_PRIVATE);
+        preferences.edit().putBoolean(CONSTANTS.FIRST_ENTER, true ).apply();
+        showFragment(fragmentManager,  new Activity_Maps().newInstance(fragmentManager,"Activity_Maps"), false);
 
     }
 
@@ -131,7 +128,6 @@ public class ToolBarFragmentActivityViewModel implements BaseFragmentActivityVie
     public  void closeDrawer() {
         //close menu on misclick
         slidingDrawer.animateClose();
-        Log.e("CLICK", "slidingDrawer.animateClose();");
     }
 
     @Override

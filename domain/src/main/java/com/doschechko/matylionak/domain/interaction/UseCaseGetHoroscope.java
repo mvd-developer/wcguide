@@ -1,7 +1,6 @@
 package com.doschechko.matylionak.domain.interaction;
 
-import com.doschechko.matylionak.data.net.parsing.ParseHTML;
-import com.doschechko.matylionak.domain.entity.Horoscope;
+import com.doschechko.matylionak.data.net.ParseHTML;
 import com.doschechko.matylionak.domain.interaction.base.UseCase;
 
 

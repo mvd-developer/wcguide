@@ -89,4 +89,9 @@ public interface RestAPI {
     Observable <List<WcProfileData>> getWCLocation();//получаем поле с координатами и обджектАйди
 
 
+    //для загрузки количества туалетов на сервере
+    @GET ("data/wc_base/count?where=")
+    Observable<Integer> getNumberOfWC();
+
+
 }
